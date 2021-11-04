@@ -40,6 +40,7 @@ router.patch("/:name", function (req, res) {
 router.delete("/:name", function (req, res) {
   /**delete an item */
   const foundItem = items.findIndex(item => item.name === req.params.name)
+  console.log("param INDEX:", foundItem)
   if (foundItem === -1) {
     throw new ExpressError("item not found", 404)
   }
