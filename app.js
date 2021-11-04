@@ -3,6 +3,7 @@ const app = express();
 const shoppingListRoutes = require("./routes/shoppingList")
 const ExpressError = require("./expressError")
 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/list", shoppingListRoutes);
