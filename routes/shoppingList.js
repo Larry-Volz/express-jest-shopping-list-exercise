@@ -4,12 +4,14 @@ const ExpressError = require("../expressError")
 const items = require("../fakeDb")
 
 router.get("/", function(req, res){
+  /** GET general list */
     res.json({items})
   })
   
 
 router.post("/", function (req, res) {
-  
+  /**POST ADD a new item */
+  console.log(`from POST request: name = ${req.body.name}`)
   const newItem = { name: req.body.name, price: req.body.price }
   items.push(newItem)
   res.status(201).json({ item: newItem })
@@ -17,6 +19,7 @@ router.post("/", function (req, res) {
 
 
 router.get("/:name", function (req, res) {
+  /** SHOW one item found by name*/
   const foundItem = items.find(item => item.name === req.params.name)
   if(foundItem === undefined){
     throw new ExpressError("item not found", 404)
@@ -25,6 +28,7 @@ router.get("/:name", function (req, res) {
 })
 
 router.patch("/:name", function (req, res) {
+  /** PATCH -> RENAME one item */
   const foundItem = items.find(item => item.name === req.params.name)
   if (foundItem === undefined) {
     throw new ExpressError("item not found", 404)
@@ -34,6 +38,7 @@ router.patch("/:name", function (req, res) {
 })
 
 router.delete("/:name", function (req, res) {
+  /**delete an item */
   const foundItem = items.findIndex(item => item.name === req.params.name)
   if (foundItem === -1) {
     throw new ExpressError("item not found", 404)
