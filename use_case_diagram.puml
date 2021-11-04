@@ -1,0 +1,26 @@
+@startuml
+
+"server.js" as (serv)
+"app.js" as (app)
+"routes/shoppingList.js" as (routes)
+"shoppingList.test.js" as (tests)
+"expressError.js" as (errors)
+"fakeDB.js" as (db)
+
+skinparam actorStyle Hollow
+
+"User" as usr 
+"Jest/Supertest" as tester
+
+usr --> (serv)
+(serv) --> (app)
+tester --> (tests)
+(tests) --> (app)
+
+(app) <--> (routes): /list/____
+
+(routes) <--> (errors)
+(routes) <--> (db)
+
+
+@enduml
