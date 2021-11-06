@@ -6,9 +6,9 @@ const app = require("../app");
 let items = require("../fakeDb");
 
 
-let cookies = { name: "cookies", price: "2.00" };
 
 beforeEach(function() {
+  let cookies = { name: "cookies", price: "2.00" };
   items.push(cookies);
 });
 
